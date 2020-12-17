@@ -1,4 +1,14 @@
-Sub YearChange()
+Sub CleaResults()
+'Loop through each worksheet
+    For Each ws In Worksheets
+        'Go to worksheet
+            Worksheets(ws.Name).Activate
+        'Clear cell values & reset cell color
+            Range("H:S").Value = ""
+            Range("H:S").Interior.ColorIndex = 0
+    Next ws
+End Sub
+Sub CalcChange()
     'https://www.automateexcel.com/vba/list-all-sheets-in-workbook/
     
 'Dim variables
@@ -64,6 +74,8 @@ Sub YearChange()
                     If openprice - endprice < 0 Then Cells(row, 11).Interior.ColorIndex = 3
                     If openprice - endprice > 0 Then Cells(row, 11).Interior.ColorIndex = 4
                     If openprice = 0 Then Cells(row, 12).Value = 0 Else Cells(row, 12).Value = (openprice - endprice) / openprice
+                    If openprice - endprice < 0 Then Cells(row, 12).Interior.ColorIndex = 3
+                    If openprice - endprice > 0 Then Cells(row, 12).Interior.ColorIndex = 4
                     Cells(row, 12).NumberFormat = "0.00%"
                     Cells(row, 13).Value = volume
                           
