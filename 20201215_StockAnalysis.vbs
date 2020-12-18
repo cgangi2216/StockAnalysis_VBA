@@ -76,8 +76,9 @@ Sub CalcChange()
                     If openprice = 0 Then Cells(row, 12).Value = 0 Else Cells(row, 12).Value = (openprice - endprice) / openprice
                     If openprice - endprice < 0 Then Cells(row, 12).Interior.ColorIndex = 3
                     If openprice - endprice > 0 Then Cells(row, 12).Interior.ColorIndex = 4
-                    Cells(row, 12).NumberFormat = "0.00%"
+                    Cells(row, 12).NumberFormat = "#,##0.00%"
                     Cells(row, 13).Value = volume
+                    Cells(row, 13).NumberFormat = "#,###"
                           
                 'Greatest % increase
                     If up_ticker = "" Or up_changerate < Cells(row, 12).Value Then up_ticker = ticker
@@ -100,7 +101,7 @@ Sub CalcChange()
                     openprice = Cells(i, 3)
                     enddate = Cells(i, 2)
                     endprice = Cells(i, 6)
-                    volume = volume + Cells(i, 7)
+                    volume = Cells(i, 7)
             Wend
         'Greatest % increase, % decrease, & total volume
             Range("Q1").Value = "Ticker"
@@ -108,13 +109,15 @@ Sub CalcChange()
             Range("P2").Value = "Greatest % increase"
             Range("Q2").Value = up_ticker
             Range("R2").Value = up_changerate
-            Range("R2").NumberFormat = "0.00%"
+            Range("R2").NumberFormat = "#,##0.00%"
             Range("P3").Value = "Greatest % decrease"
             Range("Q3").Value = down_ticker
             Range("R3").Value = down_changerate
-            Range("R3").NumberFormat = "0.00%"
+            Range("R3").NumberFormat = "#,##0.00%"
             Range("P4").Value = "Greatest total volume"
             Range("Q4").Value = vol_ticker
             Range("R4").Value = vol_changerate
+            Range("R4").NumberFormat = "#,###"
     Next ws
 End Sub
+
