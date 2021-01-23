@@ -9,7 +9,6 @@ Sub CleaResults()
     Next ws
 End Sub
 Sub CalcChange()
-    'https://www.automateexcel.com/vba/list-all-sheets-in-workbook/
     
 'Dim variables
     Dim ticker As String
